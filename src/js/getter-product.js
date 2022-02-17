@@ -1,4 +1,5 @@
-addEventListener('load', _ => {
+$(document).ready( function(){
+    console.log( "jquery runing!!!" );
     let btnContainer = document.querySelector(".single-addbtn-wrap");
     let btnDown = document.createElement('button');
     btnDown.setAttribute('type','button');

@@ -1,7 +1,6 @@
 $(document).ready( function(){
     console.log( "jquery runing!!!" )
     window.getter = {
-        loadingData: false,
         interval: null
     };
     $('.product-img').click( function(){
@@ -15,6 +14,7 @@ $(document).ready( function(){
                 btnDown.setAttribute('id','action-save');
                 btnDown.setAttribute('style','margin-left: 10px;');
                 btnDown.innerText = "Save Data";
+                btnContainer.addEventListener('click', ev => )
                 btnContainer.append( btnDown );
                 clearInterval( window.getter.interval );
             }            
