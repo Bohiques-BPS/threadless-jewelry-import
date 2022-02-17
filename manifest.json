@@ -1,0 +1,19 @@
+{
+    "name": "Threadless Jewelry Import",
+    "description": "....",
+    "version": "1.0",
+    "manifest_version": 3,
+    "background": {
+        "service_worker": "src/js/background.js"
+    },
+    "permissions": ["storage"],
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://www.hollywoodbodyjewelry.com/*","http://www.hollywoodbodyjewelry.com/*"],
+            "js": ["src/js/getter.js"]
+        }
+    ]
+  }
