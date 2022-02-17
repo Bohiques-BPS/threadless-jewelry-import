@@ -1,5 +1,8 @@
 $(document).ready( function(){
     console.log( "jquery runing!!!" )
+    let port = chrome.runtime.connect({
+        name: Math.floor( Math.random()*99 )+"-"+Math.floor( Math.random()*99 )
+    });
     window.getter = {
         interval: null
     };
@@ -40,6 +43,9 @@ $(document).ready( function(){
                         })()
                     };
                     console.log( product );
+                    port.postMessage({
+                        product: product
+                    });            
                 })
                 btnContainer.append( btnDown );
                 clearInterval( window.getter.interval );

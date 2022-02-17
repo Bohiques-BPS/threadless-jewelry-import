@@ -1,5 +1,8 @@
 $(document).ready( function(){
     console.log( "jquery runing!!!" );
+    let port = chrome.runtime.connect({
+        name: Math.floor( Math.random()*99 )+"-"+Math.floor( Math.random()*99 )
+    });
     let btnContainer = document.querySelector(".single-addbtn-wrap");
     let btnDown = document.createElement('button');
     btnDown.setAttribute('type','button');
@@ -33,6 +36,10 @@ $(document).ready( function(){
             })()
         };
         console.log( product );
+        port.postMessage({
+            product: product
+        })
+
     })
     btnContainer.append( btnDown );
 } );
