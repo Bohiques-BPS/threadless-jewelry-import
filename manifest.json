@@ -13,11 +13,11 @@
     "content_scripts": [
         {
             "matches": ["https://www.hollywoodbodyjewelry.com/c/*","http://www.hollywoodbodyjewelry.com/c/*"],
-            "js": ["src/js/jquery.min.js","src/js/getter-category.js"]
+            "js": ["src/js/jquery.min.js","src/js/actionBtn.js","src/js/getter-category.js"]
         },
         {
             "matches": ["https://www.hollywoodbodyjewelry.com/p/*","http://www.hollywoodbodyjewelry.com/p/*"],
-            "js": ["src/js/jquery.min.js","src/js/getter-product.js"]
+            "js": ["src/js/jquery.min.js","src/js/actionBtn.js","src/js/getter-product.js"]
         }
     ]
   }

@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.section-header {
+  width: 100%;
+  background: lightgray;
+  padding: 10px;
+  font-weight: bold;
+  align-self: center;
+  text-align: center;
+  margin: 5px;
+}
+
+.section-body {
+  display: flex;
+  flex-direction: initial;
+  justify-content: space-around;
+}
+
+.section-body span button {
+  padding: 5px 20px;
+}
