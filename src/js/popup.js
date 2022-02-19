@@ -10,6 +10,29 @@ $(document).ready( async _ => {
         dlAnchorElem.click();
         
     })
+
+    $("#btn_delete").click( _ => {
+        chrome.storage.local.set({products: []});
+        sessionStorage.setItem("tji-products", '[]' );
+        updateProducts( );
+    })
+
+    function updateProducts( ) {
+        let products = JSON.parse( sessionStorage.getItem("tji-products") || '[]' );
+        let divProducts = document.querySelector('productos');
+        let ul = document.createElement('ul');
+        products.forEach( element => {
+            let li = document.createElement('li');
+            li.innerText = element;
+            ul.appendChild( li );
+        })
+        divProducts.innerHTML = "";
+        divProducts.appendChild( ul );
+    }
+
+    setInterval( _ => {
+        updateProducts( );
+    }, 1000 )
     
     function getContent(products){
         let str = ""
