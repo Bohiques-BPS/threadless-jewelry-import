@@ -34,9 +34,10 @@ actionBtn = ev => {
     products.push( $(".brief-wrap dl dd").eq(0).text() );
     sessionStorage.setItem('tji-products', JSON.stringify( products ));
     window.port.postMessage({
+        action: 'add',
         product: product
-    })
-    alert('Agregado '+product.title);
+    });
+    //alert('Agregado '+product.title);
 
 }
 
