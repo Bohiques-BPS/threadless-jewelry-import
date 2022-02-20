@@ -7,7 +7,6 @@ $(document).ready( function(){
     
     $('.product-img').click( function() {
         window.getter.interval = setInterval( _ => {
-            console.log("in interval")
             let btnContainer = document.querySelector(".single-addbtn-wrap");
             if( btnContainer ) {
                 let btnDown = document.createElement('button');

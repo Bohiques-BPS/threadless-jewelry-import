@@ -5,12 +5,8 @@ chrome.runtime.onInstalled.addListener( function(){
 
 chrome.runtime.onConnect.addListener( function(port) {
     console.log( "Connected!!" )
-    console.log(port)
     port.onMessage.addListener( function(msg,port){
-        console.log(msg)
-        // let name = port.name, 
-        //     url = port.sender.url,
-        //     tabId = port.sender.tab.id;
+        
         if( msg.action == 'check' ){
             chrome.storage.local.get("products", function(data){
                 if( data.products.length == 0 ){
@@ -21,7 +17,6 @@ chrome.runtime.onConnect.addListener( function(port) {
         }else if( msg.action == 'add' ){
             chrome.storage.local.get("products", function(data){
                 let products = [];
-                console.log(data)
                 if( Object.keys(data).length !== 0 ) {
                     products = data.products;
                 }
