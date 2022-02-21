@@ -12,6 +12,7 @@ $(document).ready( async _ => {
     })
 
     $("#btn_delete").click( _ => {
+        console.log("todo borrado");
         chrome.storage.local.set({products: []});
         sessionStorage.setItem("tji-products", '[]' );
         updateProducts( );
