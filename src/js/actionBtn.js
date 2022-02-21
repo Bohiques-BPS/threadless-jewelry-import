@@ -20,11 +20,12 @@ actionBtn = ev => {
                 items.push({
                     code: childItems.eq(i).children().eq(0).text(),
                     thickness: childItems.eq(i).children().eq(1).text(),
-                    colorLogo: childItems.eq(i).children().eq(2).text(),
-                    price: childItems.eq(i).children().eq(3).text(),
-                    greaterThan3: childItems.eq(i).children().eq(4).text(),
-                    greaterThan6: childItems.eq(i).children().eq(5).text(),
-                    greaterThan12: childItems.eq(i).children().eq(6).text()
+                    length: childItems.eq(i).children().eq(2).text(),
+                    colorLogo: childItems.eq(i).children().eq(3).text(),
+                    price: childItems.eq(i).children().eq(4).text(),
+                    greaterThan3: childItems.eq(i).children().eq(5).text(),
+                    greaterThan6: childItems.eq(i).children().eq(6).text(),
+                    greaterThan12: childItems.eq(i).children().eq(7).text()
                 });
             }
             return items;
