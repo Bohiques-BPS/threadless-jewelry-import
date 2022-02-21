@@ -1,8 +1,6 @@
 $(document).ready( function(){
     console.log( "jquery runing!!!" );
-    window.port = chrome.runtime.connect({
-        name: Math.floor( Math.random()*99 )+"-"+Math.floor( Math.random()*99 )
-    });
+    
     let btnContainer = document.querySelector(".single-addbtn-wrap");
     let btnDown = document.createElement('button');
     btnDown.setAttribute('type','button');

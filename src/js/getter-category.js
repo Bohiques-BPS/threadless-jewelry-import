@@ -1,14 +1,12 @@
 $(document).ready( function(){
-    console.log( "jquery runing!!!" )
-    window.port = chrome.runtime.connect({
-        name: Math.floor( Math.random()*99 )+"-"+Math.floor( Math.random()*99 )
-    });
+    console.log( "jquery runing!!!" );
+
     window.getter = {
         interval: null
     };
-    $('.product-img').click( function(){
+    
+    $('.product-img').click( function() {
         window.getter.interval = setInterval( _ => {
-            console.log("in interval")
             let btnContainer = document.querySelector(".single-addbtn-wrap");
             if( btnContainer ) {
                 let btnDown = document.createElement('button');
