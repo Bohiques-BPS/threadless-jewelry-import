@@ -7,12 +7,13 @@ actionBtn = ev => {
         return;
     }
     let product = {
-        title: $(".brief-wrap h3").text(),
+        title: $(".brief-wrap h3").text().replaceAll( ",", " \," ),
+        url: $(".prod-container .prod-subdetail .prod-subimg-wrap .loaded-img img").attr('src'),
         itemNumber: $(".brief-wrap dl dd").eq(0).text(),
         material: $(".brief-wrap dl dd").eq(1).text(),
         plating: $(".brief-wrap dl dd").eq(2).text(),
         soldBy: $(".brief-wrap dl dd").eq(3).text(),
-        description: $(".description-wrap .description").text(),
+        description: $(".description-wrap .description").text().replaceAll( ",", "\," ),
         variations: (_=> {
             let items = [];
             let childItems = $('table .child-item');

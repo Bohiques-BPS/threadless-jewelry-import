@@ -16,12 +16,11 @@ $(document).ready(async (_) => {
   });
 
   function getContent(products) {
-    let str = "post_title,post_content,sku,regular_price,sale_price\n";
+    let str = "post_title,post_content,sku,regular_price,url\n";
     console.log(products);
     products.forEach((product) => {
       product.variations.forEach((variation) => {
-        let price =
-          (str += `${product.title},${product.description},${variation.code},${variation.price},${variation.greaterThan3}\n`);
+          (str += `${product.title},${product.description.replaceAll( "\t", "" ).replaceAll( "\n", "" )},${variation.code},${variation.price},${product.url}\n`);
       });
     });
     console.log(str);
