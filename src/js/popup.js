@@ -16,11 +16,11 @@ $(document).ready(async (_) => {
   });
 
   function getContent(products) {
-    let str = "post_title,post_content,sku,regular_price,url\n";
+    let str = "post_title,post_content,sku,regular_price,url,img_base64\n";
     console.log(products);
     products.forEach((product) => {
       product.variations.forEach((variation) => {
-          (str += `${product.title},${product.description.replaceAll( "\t", "" ).replaceAll( "\n", "" )},${variation.code},${variation.price},${product.url}\n`);
+          (str += `${product.title},${product.description.replaceAll( "\t", "" ).replaceAll( "\n", "" )},${variation.code},${variation.price},${product.url},${product.img}\n`);
       });
     });
     console.log(str);
