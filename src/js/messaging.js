@@ -10,8 +10,8 @@ window.port.onMessage.addListener( response => {
     }
 });
 
-setInterval( w => {
-     w.port.postMessage({
-        action: 'check'
-    });
-}, 500, window);
+// setInterval( w => {
+//      window.port.postMessage({
+//         action: 'check'
+//     });
+// }, 500, window);
