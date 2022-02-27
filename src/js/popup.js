@@ -15,15 +15,41 @@ $(document).ready(async (_) => {
     dlAnchorElem.click();
   });
 
+  function getVariationsName(products) {
+    let variations = [];
+    products.forEach( product => {
+      let keys = Object.keys( product.variationsName )
+      keys.forEach( key => {
+        if(variations.indexOf(key) == -1){
+          variations.push( key )
+        }
+      })
+    })
+    return variations;
+  }
+
   function getContent(products) {
-    let str = "post_title,post_content,sku,regular_price,url,img_base64\n";
-    console.log(products);
+    let str = "Type,Name,Description,SKU,Parent,url,img_base64";
+    let variations = getVariationsName(products);
+    variations.forEach( (variation,index) => {
+      str += ", Attribute "+(index+1)+" name, Attribute "+(index+1)+" value(s), Attribute "+(index+1)+" visible, Attribute "+(index+1)+" global"
+    })
+    str += "\n"
     products.forEach((product) => {
+      str += `variable,${product.title},${product.description.replaceAll( "\t", "" ).replaceAll( "\n", "" )},${product.itemNumber},${product.url},${product.img}`;
+      let keys = Object.keys( product.variationsName )
+      keys.forEach( key => {
+        str += `,${key},${product.variationsName[key]},1,0`
+      } )
+      str += `\n`
       product.variations.forEach((variation) => {
-          (str += `${product.title},${product.description.replaceAll( "\t", "" ).replaceAll( "\n", "" )},${variation.code},${variation.price},${product.url},${product.img}\n`);
+          str += `variation,${product.title},${product.description.replaceAll( "\t", "" ).replaceAll( "\n", "" )},${variation.code},${product.itemNumber},${product.url},${product.img}`
+          keys.forEach( key => {
+            str += `,${key},${variation[key]},,`
+          } )
+          str += `\n`
       });
     });
-    console.log(str);
     return str;
   }
 
@@ -36,41 +62,6 @@ $(document).ready(async (_) => {
       html += "</tr>";
     });
     html += "</table>";
-    console.log(html);
     $("#productos").html(html);
   }, 200);
-
-  /*
-    description: "\n\t\t\t\t\t\t\tWe use Ti-6AL4V-ELi ASTM F-136(Grade 23) *IMPLANT GRADE* titanium in all of our Titanium Body Jewelry.\t\t\t\t\t\t\tView G23 Titanium Certificate\t\t\t\t\t\t"
-    itemNumber: "T23RX1"
-    material: "TITANIUM 6AL-4V-ELI ASTM F-136"
-    plating: "piece"
-    soldBy: ""
-    title: "Implant Grade Titanium Bendable Hoop with Rounded Ends"
-
-    description: "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
-itemNumber: "RH93"
-material: "316L Surgical Steel"
-plating: "PVD"
-soldBy: "CZ"
-title: "Multi CZ Fan 316L Surgical Steel Hinge Hoop Segment Rings"
-variations: (3) [{…}, {…}, {…}]
-[[Prototype]]: Object
-2:
-description: "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
-itemNumber: "RH76"
-material: "316L Surgical Steel"
-plating: "PVD"
-soldBy: "piece"
-title: "316L Surgical Steel Hinged Segment Hoop Rings with Triple Layered Hoops"
-variations: (8) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
-[[Prototype]]: Object
-3:
-description: "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
-itemNumber: "RH78"
-material: "316L Surgical Steel"
-plating: "PVD"
-soldBy: "Crystals"
-title: "316L Surgical Steel Hinged Segment Hoop Rings with 5 Flush Set Front Facing Petite Crystals"
-variations: (10) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]*/
 });
