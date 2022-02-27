@@ -29,23 +29,24 @@ $(document).ready(async (_) => {
   }
 
   function getContent(products) {
-    let str = "Type,Name,Description,SKU,Parent,url,img_base64";
+    let delimiter = '@'
+    let str = "Type"+delimiter+"Name"+delimiter+"Description"+delimiter+"SKU"+delimiter+"Parent"+delimiter+"url"+delimiter+"img_base64";
     let variations = getVariationsName(products);
     variations.forEach( (variation,index) => {
-      str += ", Attribute "+(index+1)+" name, Attribute "+(index+1)+" value(s), Attribute "+(index+1)+" visible, Attribute "+(index+1)+" global"
+      str += delimiter+" Attribute "+(index+1)+" name"+delimiter+" Attribute "+(index+1)+" value(s)"+delimiter+" Attribute "+(index+1)+" visible"+delimiter+" Attribute "+(index+1)+" global"
     })
     str += "\n"
     products.forEach((product) => {
-      str += `variable,${product.title},${product.description.replaceAll( "\t", "" ).replaceAll( "\n", "" )},${product.itemNumber},${product.url},${product.img}`;
+      str += `variable${delimiter}${product.title}${delimiter}${product.description.replaceAll( "\t", "" ).replaceAll( "\n", "" )}${delimiter}${product.itemNumber}${delimiter}${delimiter}${product.url}${delimiter}${product.img}`;
       let keys = Object.keys( product.variationsName )
       keys.forEach( key => {
-        str += `,${key},${product.variationsName[key]},1,0`
+        str += `${delimiter}${key}${delimiter}${product.variationsName[key]}${delimiter}1${delimiter}0`
       } )
       str += `\n`
       product.variations.forEach((variation) => {
-          str += `variation,${product.title},${product.description.replaceAll( "\t", "" ).replaceAll( "\n", "" )},${variation.code},${product.itemNumber},${product.url},${product.img}`
+          str += `variation${delimiter}${product.title}${delimiter}${product.description.replaceAll( "\t", "" ).replaceAll( "\n", "" )}${delimiter}${variation.code}${delimiter}${product.itemNumber}${delimiter}${product.url}${delimiter}${product.img}`
           keys.forEach( key => {
-            str += `,${key},${variation[key]},,`
+            str += `${delimiter}${key}${delimiter}${variation[key]}${delimiter}${delimiter}`
           } )
           str += `\n`
       });
