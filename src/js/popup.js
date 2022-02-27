@@ -29,7 +29,7 @@ $(document).ready(async (_) => {
   }
 
   function getContent(products) {
-    let delimiter = '@'
+    let delimiter = $("#delimiter").val();
     let str = "Type"+delimiter+"Name"+delimiter+"Description"+delimiter+"SKU"+delimiter+"Parent"+delimiter+"url"+delimiter+"img_base64";
     let variations = getVariationsName(products);
     variations.forEach( (variation,index) => {
