@@ -1,8 +1,8 @@
-try{
-    $(document).ready( function(){
-        console.log( "jquery runing!!!" );
+$(document).ready( function(){
+    console.log( "jquery runing in product!!!" );
         
-        let btnContainer = document.querySelector(".single-addbtn-wrap");
+    let btnContainer = document.querySelector(".single-addbtn-wrap");
+    if( btnContainer && !btnContainer.contains(document.querySelector('#action-save')) ) {
         let btnDown = document.createElement('button');
         btnDown.setAttribute('type','button');
         btnDown.setAttribute('class','additemtotal info active');
@@ -11,8 +11,5 @@ try{
         btnDown.innerText = "Save Data";
         btnDown.addEventListener('click', actionBtn )
         btnContainer.append( btnDown );
-    } );
-}
-catch(err){
-    console.log(err)
-}
+    }
+} );
