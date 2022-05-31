@@ -6,15 +6,7 @@ actionBtn = ev => {
         alert('El Producto ya fue agregado'); 
         return;
     }
-    let getBase64Image = (img) => {
-        var canvas = document.createElement("canvas");
-        canvas.width = img.width;
-        canvas.height = img.height;
-        var ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0);
-        var dataURL = canvas.toDataURL();
-        return dataURL;
-    }
+    
     
     let getAttributes = _=> {
         let items = {};
@@ -39,7 +31,6 @@ actionBtn = ev => {
     let product = {
         title: $(".brief-wrap h3").text().replaceAll( ",", " \," ),
         url: $(".prod-container .prod-subdetail .prod-subimg-wrap .loaded-img img").attr('src'),
-        img: getBase64Image($(".prod-container .prod-subdetail .prod-subimg-wrap .loaded-img img")[0]).replaceAll( ",", " \," ),
         itemNumber: $(".brief-wrap dl dd").eq(0).text(),
         material: $(".brief-wrap dl dd").eq(1).text(),
         plating: $(".brief-wrap dl dd").eq(2).text(),

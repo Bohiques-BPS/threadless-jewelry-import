@@ -1,10 +1,13 @@
 try{
+    
     $(document).ready( function(){
         console.log( "jquery runing!!!" );
         window.getter = {
             interval: null
-        };  
-        $('.product-img').click( function() {
+        };
+      
+        $(document).click( function(ev) {//'.product-img'
+            if( -1 === ev.target.className.search('product-img')) return;
             window.getter.interval = setInterval( _ => {
                 let btnContainer = document.querySelector(".single-addbtn-wrap");
                 if( btnContainer ) {
