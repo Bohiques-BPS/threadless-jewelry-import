@@ -1,10 +1,18 @@
 $(document).ready(async (_) => {
   let { products } = await chrome.storage.local.get("products");
-
+  console.log(products)
   $("#clear").click((_) => {
     chrome.storage.local.set({ products: [] });
     products = [];
   });
+
+  $(document).click( function(ev){
+    if(ev.target.className!='borrar') return
+    let itemNumber = $(ev.target).data('item');
+    let newProducts = products.filter( product => product.itemNumber != itemNumber )
+    chrome.storage.local.set({ products: newProducts });
+    products = newProducts
+  })
 
   $("#download").click((_) => {
     var dataStr =
@@ -58,9 +66,10 @@ $(document).ready(async (_) => {
   setInterval((_) => {
     let html = "<table>";
     products.forEach((product) => {
-      html += "<tr style='border: 1px solid grey; padding:5px;'>";
+      html += "<tr style='margin-bottom:10px;border: 1px solid grey; padding:5px;'>";
       html += "<td>" + product.title + "</td>";
       html += "<td>" + product.itemNumber + "</td>";
+      html += "<td><button class='borrar' data-item='"+product.itemNumber+"' style='border-radius:50%;'>X</button></td>";
       html += "</tr>";
     });
     html += "</table>";
