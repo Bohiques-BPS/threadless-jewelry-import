@@ -10,8 +10,14 @@ window.port.onMessage.addListener( response => {
     }
 });
 
-setInterval( w => {
-      window.port.postMessage({
-         action: 'check'
-     });
+window.interval2 = setInterval( window => {
+    try{
+        window.port.postMessage({
+            action: 'check'
+        });
+    }catch(err){
+        console.log('error',err);
+        clearInterval(window.interval2);
+        window.location.reload()
+    }
 }, 1000, window);

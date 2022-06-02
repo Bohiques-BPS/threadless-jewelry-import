@@ -3,14 +3,14 @@
 actionBtn = ev => {
     let products = JSON.parse( sessionStorage.getItem('tji-products') ) ?? [];
     if( products.indexOf( $(".brief-wrap dl dd").eq(0).text() ) != -1 ) {
-        alert('El Producto ya fue agregado'); 
+        alert('The product has already been added'); 
         return;
     }
     
     
     let getAttributes = _=> {
         let items = {};
-        let childItems = $('table th');
+        let childItems = jQuery('table.qprice-chart th');
         for( let i = 1; i < childItems.length; i++ ) {
             let text = childItems.eq(i).text( );
             if ( text == 'Price' ) break;

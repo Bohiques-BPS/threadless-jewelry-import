@@ -7,8 +7,6 @@ try{
         };
       
         $(document).click( function(ev) {//'.product-img'
-            console.log('searching product-img')
-            console.log(ev.target)
             if( (-1 === ev.target.className.search('u-photo')) && (-1 === ev.target.className.search('product-img'))  ) return;
             window.getter.interval = setInterval( _ => {
                 console.log('interval')
