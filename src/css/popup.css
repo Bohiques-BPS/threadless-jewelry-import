@@ -121,3 +121,13 @@
   background-color: #808080
 }
 
+.made-with{
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+
+.made-with img{
+  width: 70%;
+}
+
