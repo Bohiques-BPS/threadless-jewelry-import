@@ -4,11 +4,13 @@ $(document).ready(async (_) => {
   $("#clear").click((_) => {
     chrome.storage.local.set({ products: [] });
     products = [];
+    
   });
+  
 
   $(document).click( function(ev){
-    if(ev.target.className!='borrar') return
-    let itemNumber = $(ev.target).data('item');
+    if(ev.target.className!='borrar item-close') return
+    let itemNumber = $(this).data('item');
     let newProducts = products.filter( product => product.itemNumber != itemNumber )
     chrome.storage.local.set({ products: newProducts });
     products = newProducts
@@ -64,15 +66,22 @@ $(document).ready(async (_) => {
   }
 
   setInterval((_) => {
-    let html = "<table>";
+    
+    let html = "<div class='list'>";
     products.forEach((product) => {
-      html += "<tr style='margin-bottom:10px;border: 1px solid grey; padding:5px;'>";
-      html += "<td>" + product.title + "</td>";
-      html += "<td>" + product.itemNumber + "</td>";
-      html += "<td><button class='borrar' data-item='"+product.itemNumber+"' style='border-radius:50%;'>X</button></td>";
-      html += "</tr>";
+      html += "<div class='list-item'>";
+      html += "<div class='item-img'>";
+      html += "<img src='"+product.image+"'>";
+      html += "</div>";
+      html += "<div class='item-title'>";
+      html += product.title;
+      html += "</div>";
+      html += "<div class='borrar item-close' data-item='"+product.itemNumber+"'>X</div>";
+      html += "</div>";
     });
-    html += "</table>";
+    html += "</div>";
     $("#productos").html(html);
   }, 200);
 });
+
+

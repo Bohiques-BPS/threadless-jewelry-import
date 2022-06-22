@@ -13,23 +13,21 @@
     <div class="container">
         <div class="section-header"> Acciones </div>
         <div class="section-body">
-            <span>
                 <button id="clear">Borrar todo</button>
-            </span>
-            <span>
                 <button id="download" >Descargar</button>
                 <a id="download2" download="products.csv" style="display: none;"></a>
-            </span>
         </div>
         <br>
         <div class="section-body">
-            <span>
-                <span style="display:flex;justify-content: center;align-items: center;">Delimiter: <input id="delimiter" type="text" value="@" style="width:30%"/></span>
+            <span class="delimiter">
+                <span class="label-delimiter">Delimiter:
+                </span>
+                <input id="delimiter" type="text" value="@" class="value-delimiter"/>
             </span>
         </div>
         <div class="section-header"> Productos </div>
         <div id="productos" class="section-body">
-
+            
         </div>
     </div>
 </body>
