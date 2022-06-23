@@ -1,6 +1,5 @@
 $(document).ready(async (_) => {
   let { products } = await chrome.storage.local.get("products");
-  console.log(products)
   $("#clear").click((_) => {
     chrome.storage.local.set({ products: [] });
     products = [];
@@ -69,19 +68,18 @@ $(document).ready(async (_) => {
     
     let html = "<div class='list'>";
     products.forEach((product) => {
-      html += "<div class='list-item'>";
+      html += "<div class='list-item' data-item='"+product.itemNumber+"'>";
       html += "<div class='item-img'>";
-      html += "<img src='"+product.image+"'>";
+      html += "<img src='"+product.url+"'>";
       html += "</div>";
       html += "<div class='item-title'>";
       html += product.title;
       html += "</div>";
-      html += "<div class='borrar item-close' data-item='"+product.itemNumber+"'>X</div>";
       html += "</div>";
     });
     html += "</div>";
     $("#productos").html(html);
-  }, 200);
+  }, 1000);
 });
 
 

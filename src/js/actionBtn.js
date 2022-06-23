@@ -11,20 +11,25 @@ actionBtn = ev => {
     let getAttributes = _=> {
         let items = {};
         let childItems = jQuery('table.qprice-chart th');
-        for( let i = 1; i < childItems.length; i++ ) {
-            let text = childItems.eq(i).text( );
-            if ( text == 'Price' ) break;
-            items[ text.replaceAll(' ', '') ] =  (_=> {
-                let items = [];
-                let childItems = $('table .child-item');
-                for( let f = 0; f < childItems.length; f++ ) {
-                    items.push(
-                        childItems.eq(f).children().eq(i).text()
-                    );
-                }
-                return items.filter( (element, index) => items.indexOf( element ) == index );
-            })()
-        }
+        for( let i = 2; i < childItems.length; i++ ) {
+            if( childItems.eq(i).find('input').prop('checked') ){
+                let text = childItems.eq(i).text();
+                if ( text == 'Price' ) break;
+                items[ text.replaceAll(' ', '') ] =  (_=> {
+                    let items = [];
+                    let childItems = $('table .child-item');
+                    for( let f = 0; f < childItems.length; f++ ) {
+                        if( childItems.eq(f).find('td').eq(0).find('input').prop('checked') ){
+                            items.push(
+                                childItems.eq(f).children().eq(i).text()
+                            );
+                        }
+                    }
+                    return items.filter( (element, index) => items.indexOf( element ) == index );
+                })()
+
+            }
+        }        
         return items;
     }
     
@@ -42,16 +47,18 @@ actionBtn = ev => {
             let items = [];
             let childItems = $('table .child-item');
             for( let i = 0; i < childItems.length; i++ ) {
-                let variation = {
-                    code: childItems.eq(i).children().eq(0).text()
-                };
-                let keys = Object.keys( getAttributes() )
-                let k = 1;
-                keys.forEach( key => {
-                    variation[key] = childItems.eq(i).children().eq(k).text()
-                    k++
-                })
-                items.push(variation);
+                if( childItems.eq(i).find('td').eq(0).find('input').prop('checked') ){
+                    let variation = {
+                        code: childItems.eq(i).children().eq(1).text()
+                    };
+                    let keys = Object.keys( getAttributes() )
+                    let k = 1;
+                    keys.forEach( key => {
+                        variation[key] = childItems.eq(i).children().eq(k).text()
+                        k++
+                    })
+                    items.push(variation);
+                }
             }
             return items;
         })()

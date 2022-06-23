@@ -1,10 +1,8 @@
 chrome.runtime.onInstalled.addListener( function(){
-    console.log( "Installed!!" );
     chrome.storage.local.set({products: []});
 });
 
 chrome.runtime.onConnect.addListener( function(port) {
-    console.log( "Connected!!" )
     port.onMessage.addListener( function(msg,port){
         
         if( msg.action == 'check' ){
